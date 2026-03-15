@@ -1,27 +1,26 @@
 {
-  "name": "project-mesto-js",
+  "name": "mesto-ad",
   "version": "1.0.0",
   "description": "Стартовый набор для выполнения проектной работы Место",
   "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
-  },
+ "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
+},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SteffanBreak/mesto-ad.git"
+    "url": "git+https://github.com/Livfo/mesto-ad.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/SteffanBreak/mesto-ad/issues"
+    "url": "https://github.com/Livfo/mesto-ad/issues"
   },
-  "homepage": "https://github.com/SteffanBreak/mesto-ad#readme",
+  "homepage": "https://github.com/Livfo/mesto-ad#readme",
   "devDependencies": {
-    "gh-pages": "^6.3.0",
-    "vite": "^7.3.1"
+    "vite": "^7.3.0"
   }
 }
