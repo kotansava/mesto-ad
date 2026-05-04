@@ -1,8 +1,7 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: "./",
   server: {
-    open: true,
-  },
+    open: true // браузер откроется автоматически
+  }
 });

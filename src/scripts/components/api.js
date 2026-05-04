@@ -1,19 +1,19 @@
 const config = {
   baseUrl: "https://mesto.nomoreparties.co/v1/apf-cohort-202",
   headers: {
-    authorization: "8da45988-f6b5-4033-a0b4-8ac923e8309d",
+    authorization: "86601be9-69ff-4794-8807-2f40ff4bca94",
     "Content-Type": "application/json",
   },
 };
 
 const getResponseData = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-};
+}; 
 
 export const getUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, {
-    headers: config.headers,
-  }).then(getResponseData);
+    headers: config.headers, 
+  }).then(getResponseData);  
 };
 
 export const getCardList = () => {
@@ -33,7 +33,7 @@ export const setUserInfo = ({ name, about }) => {
   }).then(getResponseData);
 };
 
-export const setUserAvatar = (avatar) => {
+export const setUserAvatar = ({ avatar }) => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: "PATCH",
     headers: config.headers,
@@ -54,16 +54,17 @@ export const addNewCard = ({ name, link }) => {
   }).then(getResponseData);
 };
 
-export const deleteCardFromServer = (cardId) => {
+export const changeLikeCardStatus = (cardID, isLiked) => {
+  return fetch(`${config.baseUrl}/cards/${cardID}/likes`, {
+    method: isLiked ?  "DELETE" : "PUT",
+    headers: config.headers,
+  }).then((res) => getResponseData(res));
+};
+
+export const deleteCardApi = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(getResponseData);
-};
-
-export const changeLikeCardStatus = (cardId, isLiked) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-    method: isLiked ? "DELETE" : "PUT",
-    headers: config.headers,
-  }).then(getResponseData);
+  })
+    .then(getResponseData);
 };
