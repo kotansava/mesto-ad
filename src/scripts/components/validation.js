@@ -86,8 +86,25 @@ const setEventListeners = (formElement, settings) => {
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
-      checkInputValidity(formElement, inputElement, settings);
-      toggleButtonState(inputList, buttonElement, settings);
+      // Предотвращаем рекурсивный вызов при программном изменении значения
+      if (inputElement._isTrimming) return;
+
+      const oldValue = inputElement.value;
+      // Удаляем начальные/конечные пробелы и заменяем два и более пробела подряд на один
+      const cleanedValue = oldValue.trim().replace(/ {2,}/g, ' ');
+
+      if (cleanedValue !== oldValue) {
+        inputElement._isTrimming = true;
+        inputElement.value = cleanedValue;
+        inputElement._isTrimming = false;
+
+        // После очистки проверяем валидность и состояние кнопки
+        checkInputValidity(formElement, inputElement, settings);
+        toggleButtonState(inputList, buttonElement, settings);
+      } else {
+        checkInputValidity(formElement, inputElement, settings);
+        toggleButtonState(inputList, buttonElement, settings);
+      }
     });
   });
 };
@@ -116,4 +133,3 @@ export const enableValidation = (settings) => {
     setEventListeners(formElement, settings);
   });
 };
-
